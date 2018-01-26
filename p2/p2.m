@@ -1,22 +1,28 @@
 % System Simulation Problem 2
 % Written by Josh Humphrey
-
-deltaT = 0.01;
-s = linspace(0,100,100);
-zoh = (1-exp(-s*deltaT));
-Compensator = (4*s+10)./(s+10);
-Actuator = 4./(s+4);
-Airframe = (4.586*s+0.404)./(s.^2+0.211*s+6.922);
+zoh = [0.5,1,0.5,0,0,0,0,0,0,0];
 
 %% Part A
-PlaneTransferFunction = Compensator.*Actuator.*Airframe;
-for t = 0:100
-    figure(1)
-    title('Part A Plot')
-    plot(PlaneTransferFunction.*zoh)
-    xlabel('time (seconds)')
-    ylabel('magnitude')
+ykm4 = 0;
+ykm3 = 0;
+ykm2 = 0;
+ykm1 = 0;
+ekm3 = 0;
+ekm2 = 0;
+ekm1 = 0;
+ek = zoh;
+
+for i = 1:10
+    yk = (77.376*ekm2+189.904*ekm1+16.16*ek(i)-ykm4-14*ykm3-99.862*ykm1)*(1/285.32);
+    ykm4 = ykm3;
+    ykm3 = ykm2;
+    ykm2 = ykm1;
+    ykm1 = yk;
+    ekm3 = ekm2;
+    ekm2 = ekm1;
+    ekm1 = ek;
 end
 
+plot(yk)
 %% Part B
 
