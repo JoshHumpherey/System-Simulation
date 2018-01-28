@@ -1,0 +1,25 @@
+% System Simulation Problem 3
+% Written by Josh Humphrey
+
+unitStep = ones(1,100);
+results = zeros(1,100);
+wk = unitStep;
+xkm3 = 0;
+xkm2 = 0;
+xkm1 = 0;
+wkm2 = 0;
+wkm1 = 0;
+for k = 1:100
+    results(1,k) = (-xkm3-185.333*xkm2-12133.3*xkm1+50*(-wkm2+33.3333*wkm1+133333*wk(k));
+    
+    xkm3 = xkm2;
+    xkm2 = xkm1;
+    xkm1 = results(1,k);
+    wkm2 = wkm1;
+    wkm1 = wk(k);
+end
+
+plot(results)
+title('X(k) Unit Step Response')
+xlabel('k')
+ylabel('Response Magnitude')

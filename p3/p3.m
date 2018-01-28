@@ -1,31 +1,44 @@
 % System Simulation Problem 3
 % Written by Josh Humphrey
 
-syms z
-deltaT = 0.01;
-s = (1./deltaT).*log(z);
-Hz_approx = (50*(-s.^2+33.3333*s+13333.3))./(s.^3+185.333*s.^2+12133.3*s+693333)
-
-for t = 0:5
-    figure(1)
-    plot(Hz_approx*unitStep(t))
-    title('Step Response')
-    xlim([0;30])
-    xlabel('time (seconds)')
-    ylabel('Step Response Magnitude')
+unitStep = ones(1,100);
+impulse = zeros(1,100);
+impulse(1,1) = 1;
+stepResults = zeros(1,100);
+impulseResults = zeros(1,100);
+wk = unitStep;
+xkm3 = 0;
+xkm2 = 0;
+xkm1 = 0;
+wkm2 = 0;
+wkm1 = 0;
+for k = 1:100
+    stepResults(1,k) = (1/693333)*(-xkm3-185.333*xkm2-12133.3*xkm1+50*(-wkm2+33.3333*wkm1+133333*wk(k)));
+    xkm3 = xkm2;
+    xkm2 = xkm1;
+    xkm1 = stepResults(1,k);
+    wkm2 = wkm1;
+    wkm1 = wk(k);
 end
 
-z = linspace(-5,5,200);
-s = (1./deltaT).*log(z);
-Hz_approx = (50*(-s.^2+33.3333*s+13333.3))./(s.^3+185.333*s.^2+12133.3*s+693333);
-
-
-for t = -5:5
-    figure(2)
-    plot(Hz_approx)
-    title('Impulse Response')
-    xlim([-1;1])
-    ylim([-0.1,0.3])
-    xlabel('time (seconds)')
-    ylabel('Impulse Response Magnitude')
+wk = impulse;
+xkm3 = 0;
+xkm2 = 0;
+xkm1 = 0;
+wkm2 = 0;
+wkm1 = 0;
+for k = 1:100
+    impulseResults(1,k) = (1/693333)*(-xkm3-185.333*xkm2-12133.3*xkm1+50*(-wkm2+33.3333*wkm1+133333*wk(k)));
+    xkm3 = xkm2;
+    xkm2 = xkm1;
+    xkm1 = impulseResults(1,k);
+    wkm2 = wkm1;
+    wkm1 = wk(k);
 end
+hold on
+plot(impulseResults)
+plot(stepResults)
+title('Responses from Unit Step and Impulse')
+legend('Impulse Response','Step Response')
+xlabel('k')
+ylabel('Response Magnitude')

@@ -45,7 +45,7 @@ end
     plot(yk)
     title('Part A')
     xlim([0,100])
-    xlabel('Time in Milliseconds')
+    xlabel('k')
     ylabel('Y(k): Response Magnitude')
     
 %% Part B
@@ -75,7 +75,7 @@ end
     plot(yk)
     title('Part B')
     xlim([0,100])
-    xlabel('Time in Milliseconds')
+    xlabel('k');
     ylabel('E(k): Response Magnitude')
 
 %% Part C
@@ -124,7 +124,7 @@ end
     plot(yk)
     title('Part C')
     xlim([0,100])
-    xlabel('Time in Milliseconds')
+    xlabel('k');
     ylabel('Y(k): Response Magnitude')
     
 %% Part D
