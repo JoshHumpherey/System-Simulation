@@ -2,52 +2,19 @@
 % Written by Josh Humphrey
 
 %% Part A
-% Assume a ZOH function that lasts for one half second
-zoh = zeros(1,1000);
-for count = 1:100
-    if count < 50
-        if count < 15
-            zoh(1,count) = 0.5;
-        end
-        if count >= 15 && count < 35
-            zoh(1,count) = 1;
-        end
-        if count >= 35 && count < 50
-            zoh(1, count) = 0.5;
-        end
-    else
-        zoh(1,count) = 0;
-    end
-    
-end
-    
-ykm4 = 0;
-ykm3 = 0;
-ykm2 = 0;
-ykm1 = 0;
-ekm3 = 0;
-ekm2 = 0;
-ekm1 = 0;
-ek = zoh;
-
-for i = 1:100
-    yk = (77.376*ekm2+189.904*ekm1+16.16*ek(i)-ykm4-14*ykm3-99.862*ykm1)*(1/285.32);
-    ykm4 = ykm3;
-    ykm3 = ykm2;
-    ykm2 = ykm1;
-    ykm1 = yk;
-    ekm3 = ekm2;
-    ekm2 = ekm1;
-    ekm1 = ek;
+yk_results = zeros(1,100);
+hold on
+for n = 1:100
+    yk_results(1,n) = (4.76837*10^-14)*(1.22399*10^12)*n-(16941.8*2.^(n+31))*(44053.^(-n-1)+(9.25804*10^9)*(3.^(-n))*(8.^(n+1))*625.^(n+2)*90997.^(-n-1)+2.05629*10^12);
 end
 
-    figure(1)
-    plot(yk)
-    title('Part A')
-    xlim([0,100])
-    xlabel('k')
-    ylabel('Y(k): Response Magnitude')
-    
+figure(1)
+plot(yk_results)
+title('Part A')
+xlabel('time')
+ylabel('response magnitude')
+hold off
+
 %% Part B
 stepVector = ones(1,100);
 ykm4 = 0;
