@@ -1,7 +1,7 @@
 % System Simulation Problem 5
 % Written by Josh Humphrey
-N = 10000;
-T = 0.01;
+N = 100;
+T = 0.1;
 t = linspace(0,10,N+1);
 u1 = ones(1,N);
 u2 = ones(1,N);
@@ -35,14 +35,14 @@ for k = 1:N
 end
 
 figure(1)
-plot(y1,t)
+plot(t,y1)
 xlim([0,10])
 xlabel('time')
 ylabel('magnitude')
 title('C1')
 
 figure(2)
-plot(y2,t)
+plot(t,y2)
 xlim([0,10])
 xlabel('time')
 ylabel('magnitude')
