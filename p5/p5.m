@@ -2,9 +2,9 @@
 % Written by Josh Humphrey
 N = 10000;
 T = 0.01;
-t = linspace(0,10,N);
-u1 = ones(1,N+1);
-u2 = ones(1,N+1);
+t = linspace(0,10,N+1);
+u1 = ones(1,N);
+u2 = ones(1,N);
 
 x1 = zeros(1,N);
 x2 = x1;
@@ -34,4 +34,16 @@ for k = 1:N
     y2(k+1) = x2(k+1)+x4(k+1)+8*u2(1,k);
 end
 
-plot(y1);
+figure(1)
+plot(y1,t)
+xlim([0,10])
+xlabel('time')
+ylabel('magnitude')
+title('C1')
+
+figure(2)
+plot(y2,t)
+xlim([0,10])
+xlabel('time')
+ylabel('magnitude')
+title('C2')
