@@ -1,3 +1,4 @@
+T = 0.01 %Reference handwritten work for derivation of equations
 unitStep = ones(1,100);
 results = zeros(1,100);
 
