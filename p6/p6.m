@@ -3,9 +3,9 @@
 T = 0.01;
 N = 10000001;
 
-a = 0.2;
-b = 0.2;
-c = 4;
+a = 0.3;
+b = 0.3;
+c = 8.5;
 x(1) = 5;
 y(1) = 5;
 z(1) = 10;
@@ -28,6 +28,6 @@ for t = 2:N-1
 
 end
 figure(1)
-plot(x(5000000:N),y(5000000:N))
-title('x vs. y with a period of 1')
+plot3(x(5000000:N),y(5000000:N),z(5000000:N))
+title('Rossler Attractor: C = 8.5')
 
