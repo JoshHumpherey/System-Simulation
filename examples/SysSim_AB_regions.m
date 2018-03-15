@@ -1,0 +1,48 @@
+r=1;
+theta=linspace(0,2*pi,1001);
+z=r*exp(j*theta);
+clf
+
+
+w=(z-1);
+subplot(221)
+plot(real(w),imag(w))
+title('AB-1 (Euler) Stability Region')
+xlabel('Re\{{\lambda}T \}')
+ylabel('Im\{{\lambda}T \}')
+axis([-2 1 -1.5 1.5])
+axis square
+grid on
+
+
+w=2*z.*(z-1)./(3*z-1);
+subplot(222)
+plot(real(w),imag(w))
+title('AB-2 Stability Region')
+xlabel('Re\{{\lambda}T \}')
+ylabel('Im\{{\lambda}T \}')
+axis([-1 1 -1 1])
+axis square
+grid on
+
+
+w=12*(z.^2).*(z-1)./(23*(z.^2)-16*z+5);
+subplot(223)
+plot(real(w),imag(w))
+title('AB-3 Stability Region')
+xlabel('Re\{{\lambda}T \}')
+ylabel('Im\{{\lambda}T \}')
+axis([-1 1 -1 1])
+axis square
+grid on
+
+
+w=24*(z.^3).*(z-1)./(55*(z.^3)-59*(z.^2)+37*z-9);
+subplot(224)
+plot(real(w),imag(w))
+title('AB-4 Stability Region')
+xlabel('Re\{{\lambda}T \}')
+ylabel('Im\{{\lambda}T \}')
+axis([-1 1 -1 1])
+axis square
+grid on
