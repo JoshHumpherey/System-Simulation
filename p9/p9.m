@@ -28,3 +28,20 @@ plot(real(H),imag(H));
 title('AB-2 Stability Region') 
 
 %% Part D %%
+run=2;
+Nr=10;
+Ntheta=80;
+
+rho=linspace(1,Nr,Nr)/Nr;
+theta=linspace(0,(Ntheta-1)/Ntheta,Ntheta)*2*pi;
+t=linspace(0,2*pi,501);
+
+
+for T = 0.1:0.1:1
+    w = T*((2.9362*z.^4-7.7069*z.^3+8.3393*z.^2-4.4174*z+1)./(.0850*z.^4));
+    hold on
+    figure(3)
+    plot(real(w),imag(w),'DisplayName')
+    title('\lambdaT Stability Regions for Different Sample Times')
+    hold off
+end

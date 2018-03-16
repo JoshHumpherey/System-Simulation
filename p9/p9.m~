@@ -18,3 +18,32 @@ plot(Omega,angle(H));
 title('Frequency Response (Angle)')
 
 %% Part C %%
+Omega=linspace(0,2*pi,N+1);      %Set up vector of Omega
+z=exp(1i*Omega);                  %Define z on unit circle
+T=0.001;
+H=(2.9362*z.^4-7.7069*z.^3+8.3393*z.^2-4.4174*z+1)./(.0850*z.^4);
+
+figure(2)
+plot(real(H),imag(H));
+title('AB-2 Stability Region') 
+
+%% Part D %%
+run=2;
+Nr=10;
+Ntheta=80;
+
+rho=linspace(1,Nr,Nr)/Nr;
+theta=linspace(0,(Ntheta-1)/Ntheta,Ntheta)*2*pi;
+t=linspace(0,2*pi,501);
+T = 0.0001;
+
+for count = 1:1:5
+    w = T*((2.9362*z.^4-7.7069*z.^3+8.3393*z.^2-4.4174*z+1)./(.0850*z.^4));
+    hold on
+    figure(3)
+    plot(real(w),imag(w))
+    legend
+    title('\lambdaT Stability Regions for Different Sample Times')
+    hold off
+    T = T*10;
+end
