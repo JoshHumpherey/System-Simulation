@@ -2,6 +2,7 @@
 % Written by Josh Humphrey
 
 %% Part B %%
+clear
 N = 10000;
 Omega=linspace(0,2*pi,N+1);      %Set up vector of Omega
 z=exp(1i*Omega);                  %Define z on unit circle
@@ -18,6 +19,7 @@ plot(Omega,angle(H));
 title('Frequency Response (Angle)')
 
 %% Part C %%
+clear
 Omega=linspace(0,2*pi,N+1);      %Set up vector of Omega
 z=exp(1i*Omega);                  %Define z on unit circle
 T=0.001;
@@ -28,6 +30,7 @@ plot(real(H),imag(H));
 title('AB-2 Stability Region') 
 
 %% Part D %%
+clear
 N = 10000;
 Omega=linspace(0,2*pi,N+1); 
 z=exp(1i*Omega); 
