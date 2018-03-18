@@ -49,12 +49,10 @@ end
 %% Part F %%
 clear
 N = 10000;
-t = linspace(0,10,N);
 T_unstable = 1.0;
 T_stable = 0.1;
 u = ones(1,N);
-y1 = zeros(N);
-y2 = zeros(N);
+y1(k) = zeros(N);
 
 for k = 4:N-4
     f1(k) = -2.9362*y1(k+4)+7.7068*y1(k+3)+8.3393*y1(k+2)-4.4174*y1(k)+0.08507*u(k+4);
@@ -65,8 +63,3 @@ for k = 4:N-4
     f2(k) = -2.9362*y2(k+4)+7.7068*y2(k+3)+8.3393*y2(k+2)-4.4174*y2(k)+0.08507*u(k+4);
     y2(k+2) = y2(k+1) + (T_stable/2)*(3*y2(k+1)-y2(k));
 end
-
-figure(4)
-plot(y1)
-
-
