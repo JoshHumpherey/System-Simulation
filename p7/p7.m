@@ -1,27 +1,30 @@
 % Problem 7: Written by Josh Humphrey
-N = 10000;
-period = 1;
-R = 28;
-fx = linspace(1,period,N);
-fy = linspace(1,period,N);
-fz = linspace(1,period,N);
-k = linspace(1,period,N);
-x = linspace(1,period,N);
-y = linspace(1,period,N);
-z = linspace(1,period,N);
+N = 10000001;
+t = linspace(0,15,N+1);
+T = 0.0001;
+
+x = zeros(1,N);
+y = zeros(1,N);
+z = zeros(1,N);
+
+fx = zeros(1,N);
+fy = zeros(1,N);
+fz = zeros(1,N);
+
 x(1) = 1;
 y(1) = 2;
 z(1) = 10;
 
-for k = 1:N-4
-    fx(k) = 10*(y(k)-x(k));
-    fy(k) = -x(k)*z(k)+R*x(k)-y(k);
-    fz(k) = x(k)*y(k)-(8/3)*z(k);
+for k = 1:N-5
+    fx(k+3)= 10*(y(k)-x(k));
+    fy(k+3)= -x(k)*z(k)+28*x(k)-y(k);
+    fz(k+3)=  x(k)*y(k)-(8/3)*z(k);
     
-    x(k+3)= x(k+2)+((23/12)*fx(k+2)-(4/3)*fx(k+1)+(5/12)*fx(k));
-    y(k+3)= y(k+2)+((23/12)*fy(k+2)-(4/3)*fy(k+1)+(5/12)*fy(k));
-    z(k+3)= z(k+2)+((23/12)*fz(k+2)-(4/3)*fz(k+1)+(5/12)*fz(k));
+    x(k+4)= x(k+3)+ (T./24)*(55*fx(k+3)-59*fx(k+2)+37*fx(k+1)-9*fx(k));
+    y(k+4)= y(k+3)+ (T./24)*(55*fy(k+3)-59*fy(k+2)+37*fy(k+1)-9*fy(k));
+    z(k+4)= z(k+3)+ (T./24)*(55*fz(k+3)-59*fz(k+2)+37*fz(k+1)-9*fz(k));
 end
 
+figure(1)
 plot3(x,y,z)
 title('AB-4 Simulation of the Lorenz System')

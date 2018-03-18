@@ -20,13 +20,14 @@ title('Frequency Response (Angle)')
 
 %% Part C %%
 clear
+N = 10000;
 Omega=linspace(0,2*pi,N+1);      %Set up vector of Omega
 z=exp(1i*Omega);                  %Define z on unit circle
 T=0.001;
-H=(2.9362*z.^4-7.7069*z.^3+8.3393*z.^2-4.4174*z+1)./(.0850*z.^4);
+w=((2.9362*z.^4-7.7069*z.^3+8.3393*z.^2-4.4174*z+1)./(.0850*z.^4)).*(2*z.*(z-1)./(3*z-1));
 
 figure(2)
-plot(real(H),imag(H));
+plot(real(w),imag(w));
 title('AB-2 Stability Region') 
 
 %% Part D %%
@@ -36,7 +37,7 @@ Omega=linspace(0,2*pi,N+1);
 z=exp(1i*Omega); 
 
 for T = 0.1:0.1:1
-    w = T*((2.9362*z.^4-7.7069*z.^3+8.3393*z.^2-4.4174*z+1)./(.0850*z.^4));
+    w = T*((2.9362*z.^4-7.7069*z.^3+8.3393*z.^2-4.4174*z+1)./(.0850*z.^4)).*(2*z.*(z-1)./(3*z-1));
     hold on
     figure(3)
     plot(real(w),imag(w))
