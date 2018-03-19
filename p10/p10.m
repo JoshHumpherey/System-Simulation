@@ -92,6 +92,7 @@ hold off
 %% Part F %%
 clear
 N=10000;
+t = linspace(0,10,N);
 num = [0.6042 0 4.1572 0 6.1591];
 den = [1 3.4630 7.1704 10.2787 8.6926 6.159];
 [A,B,C,D] = tf2ss(num,den);
@@ -102,38 +103,68 @@ T_relatively_unstable = 0.5;
 T_completely_unstalbe = 1.0;
 
 u = ones(1,N);
-fx = zeros(1,N);
-x = zeros(1,N);
+fx1 = zeros(1,N);
+fx2 = zeros(1,N);
+fx3 = zeros(1,N);
+fx4 = zeros(1,N);
+fx5 = zeros(1,N);
+x1 = zeros(1,N);
+x2 = zeros(1,N);
+x3 = zeros(1,N);
+x4 = zeros(1,N);
+x5 = zeros(1,N);
 y = zeros(1,N);
 
-A = [-3.46300000000000];
-B = [-7.17040000000000];
-C = [-10.2787000000000];
-
 for k = 1:N-2
-    fx(k) = A.*x(k) + B.*u(k);
+    fx1(k) = -3.463*x1(k)-7.1704*x2(k)-10.2787*x3(k)-8.6926*x4(k)-6.159*x5(k) + u(k);
+    fx2(k) = x1(k);
+    fx3(k) = x2(k);
+    fx4(k) = x3(k);
+    fx5(k) = x4(k);
     
-    x(k+2) = x(k+1) + (T_relatively_stable/2)*(3*fx(k+1)-fx(k));
-    y(k) = C.*x(k)+D.*u(k);
+    x1(k+3) = x1(k+2)+(T_relatively_stable)*((23/12)*fx1(k+2)-(4/3)*fx1(k+1)+(5/12)*fx1(k));
+    x2(k+3) = x2(k+2)+(T_relatively_stable)*((23/12)*fx2(k+2)-(4/3)*fx2(k+1)+(5/12)*fx2(k));
+    x3(k+3) = x3(k+2)+(T_relatively_stable)*((23/12)*fx3(k+2)-(4/3)*fx3(k+1)+(5/12)*fx3(k));
+    x4(k+3) = x4(k+2)+(T_relatively_stable)*((23/12)*fx4(k+2)-(4/3)*fx4(k+1)+(5/12)*fx4(k));
+    x5(k+3) = x5(k+2)+(T_relatively_stable)*((23/12)*fx5(k+2)-(4/3)*fx5(k+1)+(5/12)*fx5(k));
+    y(k) = 0.6042*x1(k) + 4.1572*x3(k)+6.1591*x5(k);
 end
 
 figure(4)
 subplot(121)
-plot(x,y)
+plot(y,t)
+xlim([0,10])
 title('Relatively Stable T')
 
 u = ones(1,N);
-fx = zeros(1,N);
-x = zeros(1,N);
+fx1 = zeros(1,N);
+fx2 = zeros(1,N);
+fx3 = zeros(1,N);
+fx4 = zeros(1,N);
+fx5 = zeros(1,N);
+x1 = zeros(1,N);
+x2 = zeros(1,N);
+x3 = zeros(1,N);
+x4 = zeros(1,N);
+x5 = zeros(1,N);
 y = zeros(1,N);
 
 for k = 1:N-2
-    fx(k) = A.*x(k) + B.*u(k);
+    fx1(k) = -3.463*x1(k)-7.1704*x2(k)-10.2787*x3(k)-8.6926*x4(k)-6.159*x5(k) + u(k);
+    fx2(k) = x1(k);
+    fx3(k) = x2(k);
+    fx4(k) = x3(k);
+    fx5(k) = x4(k);
     
-    x(k+2) = x(k+1) + (T_relatively_unstable/2)*(3*fx(k+1)-fx(k));
-    y(k) = C.*x(k)+D.*u(k);
+    x1(k+3) = x1(k+2)+(T_relatively_stable)*((23/12)*fx1(k+2)-(4/3)*fx1(k+1)+(5/12)*fx1(k));
+    x2(k+3) = x2(k+2)+(T_relatively_stable)*((23/12)*fx2(k+2)-(4/3)*fx2(k+1)+(5/12)*fx2(k));
+    x3(k+3) = x3(k+2)+(T_relatively_stable)*((23/12)*fx3(k+2)-(4/3)*fx3(k+1)+(5/12)*fx3(k));
+    x4(k+3) = x4(k+2)+(T_relatively_stable)*((23/12)*fx4(k+2)-(4/3)*fx4(k+1)+(5/12)*fx4(k));
+    x5(k+3) = x5(k+2)+(T_relatively_stable)*((23/12)*fx5(k+2)-(4/3)*fx5(k+1)+(5/12)*fx5(k));
+    y(k) = 0.6042*x1(k) + 4.1572*x3(k)+6.1591*x5(k);
 end
 
 subplot(122)
-plot(x,y)
+plot(y,t)
+xlim([0,10])
 title('Relatively Unstable T')

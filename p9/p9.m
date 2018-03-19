@@ -92,6 +92,7 @@ hold off
 
 %% Part F %%
 N=10000;
+t = linspace(0,10,N);
 num = [0.0850];
 den = [1 0.4174 1.0871 0.2805 0.1512];
 [A,B,C,D] = tf2ss(num,den);
@@ -102,38 +103,63 @@ T_relatively_unstable = 0.7;
 T_completely_unstalbe = 1.0;
 
 u = ones(1,N);
-fx = zeros(1,N);
-x = zeros(1,N);
+fx1 = zeros(1,N);
+fx2 = zeros(1,N);
+fx3 = zeros(1,N);
+fx4 = zeros(1,N);
+x1 = zeros(1,N);
+x2 = zeros(1,N);
+x3 = zeros(1,N);
+x4 = zeros(1,N);
 y = zeros(1,N);
-A = -0.4174;
-B = -1.0871;
-C = -0.2805;
-D = -0.1512;
+
 for k = 1:N-2
-    fx(k) = A.*x(k) + B.*u(k);
+    fx1(k) = -0.4174*x1(k)-1.0871*x2(k)-0.2805*x3(k)-0.1512*x4(k) + u(k);
+    fx2(k) = x1(k);
+    fx3(k) = x2(k);
+    fx4(k) = x3(k);
     
-    x(k+2) = x(k+1) + (T_relatively_stable/2)*(3*fx(k+1)-fx(k));
-    y(k) = C.*x(k)+D.*u(k);
+    x1(k+2) = x1(k+1) + (T_relatively_stable/2)*(3*fx1(k+1)-fx1(k));
+    x2(k+2) = x2(k+1) + (T_relatively_stable/2)*(3*fx2(k+1)-fx2(k));
+    x3(k+2) = x3(k+1) + (T_relatively_stable/2)*(3*fx3(k+1)-fx3(k));
+    x4(k+2) = x4(k+1) + (T_relatively_stable/2)*(3*fx4(k+1)-fx4(k));
+    
+    y(k) = 0.0850*x4(k);
 end
 
 figure(4)
 subplot(121)
-plot(x,y)
+plot(y,t)
+xlim([0,10])
 title('Relatively Stable T')
 
 u = ones(1,N);
-fx = zeros(1,N);
-x = zeros(1,N);
+fx1 = zeros(1,N);
+fx2 = zeros(1,N);
+fx3 = zeros(1,N);
+fx4 = zeros(1,N);
+x1 = zeros(1,N);
+x2 = zeros(1,N);
+x3 = zeros(1,N);
+x4 = zeros(1,N);
 y = zeros(1,N);
 
 for k = 1:N-2
-    fx(k) = A.*x(k) + B.*u(k);
+    fx1(k) = -0.4174*x1(k)-1.0871*x2(k)-0.2805*x3(k)-0.1512*x4(k) + u(k);
+    fx2(k) = x1(k);
+    fx3(k) = x2(k);
+    fx4(k) = x3(k);
     
-    x(k+2) = x(k+1) + (T_relatively_unstable/2)*(3*fx(k+1)-fx(k));
-    y(k) = C.*x(k)+D.*u(k);
+    x1(k+2) = x1(k+1) + (T_relatively_unstable/2)*(3*fx1(k+1)-fx1(k));
+    x2(k+2) = x2(k+1) + (T_relatively_unstable/2)*(3*fx2(k+1)-fx2(k));
+    x3(k+2) = x3(k+1) + (T_relatively_unstable/2)*(3*fx3(k+1)-fx3(k));
+    x4(k+2) = x4(k+1) + (T_relatively_unstable/2)*(3*fx4(k+1)-fx4(k));
+    
+    y(k) = 0.0850*x4(k);
 end
 
 subplot(122)
-plot(x,y)
+plot(y,t)
+xlim([0,10])
 title('Relatively Unstable T')
 
