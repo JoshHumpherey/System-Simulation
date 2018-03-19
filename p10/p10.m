@@ -5,9 +5,9 @@
 clear
 N = 10000;
 Omega=linspace(0,2*pi,N+1);      %Set up vector of Omega
-z=exp(1i*Omega);                  %Define z on unit circle
+s=exp(1i*Omega);                  %Define z on unit circle
 T=0.001;
-H=(0.297046*z.*(z.^4-0.982666*z.^3+0.712641*z.^2-0.221309*z+0.0553271))./(z.^5-1.89353*z.^4+1.70189*z.^3-0.843832*z.^2+0.2302*z-0.0272007);
+H = (0.6042*s.^4+4.1572*s.^2+6.1591)./(s.^5+3.4630*s.^4+7.1704*s.^3+10.2787*s.^2+8.6926*s+6.159);
        
 figure (1)
 subplot(2,1,1)
@@ -19,30 +19,80 @@ plot(Omega,angle(H));
 title('Frequency Response (Angle)')
 
 %% Part C %%
-clear
-N = 10000;
-Omega=linspace(0,2*pi,N+1);      %Set up vector of Omega
-z=exp(1i*Omega);                  %Define z on unit circle
-T=0.001;
-w=((z.^5-1.89353*z.^4+1.70189*z.^3-0.843832*z.^2+0.2302*z-0.0272007)./(0.297046*z.*(z.^4-0.982666*z.^3+0.712641*z.^2-0.221309*z+0.0553271))).*(12*(z.^2).*(z-1)./(23*(z.^2)-16*z+5));
-
 figure(2)
-plot(real(w),imag(w));
-title('AB-3 Stability Region') 
+run=2;
+Nr=10;
+Ntheta=80;
 
-%% Part D %%
-clear
-N = 10000;
-Omega=linspace(0,2*pi,N+1); 
-z=exp(1i*Omega); 
+rho=linspace(1,Nr,Nr)/Nr;
+theta=linspace(0,(Ntheta-1)/Ntheta,Ntheta)*2*pi;
+    
+rhocw=rho;
+rhoccw=rho;
 
-for T = 0.1:0.1:1
-    w = T*((z.^5-1.89353*z.^4+1.70189*z.^3-0.843832*z.^2+0.2302*z-0.0272007)./(0.297046*z.*(z.^4-0.982666*z.^3+0.712641*z.^2-0.221309*z+0.0553271))).*(12*(z.^2).*(z-1)./(23*(z.^2)-16*z+5));
-    hold on
-    figure(3)
-    plot(real(w),imag(w))
-    legend('T=0.1','T=0.2','T=0.3','T=0.4','T=0.5','T=0.6','T=0.7','T=0.8','T=0.9','T=1.0')
-    title('\lambdaT Stability Regions for Different Sample Times')
-    hold off
+p=linspace(0,2*pi,1001);
+for m=1:Nr
+    r=rho(Nr-m+1);
+    z=r*exp(i*p);
+    w=(12*(z.^2).*(z-1)./(23*(z.^2)-16*z+5));
+    if(r>0.57)
+        rhoccw(m)=100;
+        subplot(121)
+        title('AB-3 Stability Region')
+        hold on
+        plot(real(w),imag(w))
+        hold off
+        axis([-1 1 -1.5 1.5])
+    else
+        rhocw(m)=0;
+        subplot(122)
+         title('r=1')
+        hold on
+        plot(real(w),imag(w))
+        hold off
+        axis([-1 1 -1 1])
+    end    
+    
 end
+if(run==3)
+    pause
+end
+
+
+r1=linspace(min(rhoccw),1,1001);
+r2=linspace(0,max(rhocw),1001);
+
+for m=1:length(theta)
+    z1=r1*exp(i*theta(m));
+    z2=r2*exp(i*theta(m));
+    w1=(12*(z1.^2).*(z1-1)./(23*(z1.^2)-16*z1+5));
+    w2=(12*(z2.^2).*(z2-1)./(23*(z2.^2)-16*z2+5));
+    
+    subplot(121)
+    hold on
+        plot(real(w1),imag(w1))
+    hold off
+    subplot(122)
+    hold on
+        plot(real(w2),imag(w2))
+    hold off
+    
+end
+
+% Add in part D poles
+subplot(121)
+hold on
+plot(-1.75552,0, 'x')
+plot(-0.71469,-1.26945, 'x')
+plot(-0.71469,1.26945, 'x')
+plot(-0.139044,-1.278189, 'x')
+plot(-0.139044,1.278189, 'x')
+hold off
+
+T_completely_stable = 0.01;
+T_relatively_stable = 0.3;
+T_relatively_unstable = 0.5;
+T_completely_unstalbe = 1.0;
+
+
 
