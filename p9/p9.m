@@ -88,7 +88,52 @@ plot(-0.0611034,-0.935565, 'x')
 plot(-0.0611034,0.935565, 'x')
 hold off
 
+
+
+%% Part F %%
+N=10000;
+num = [0.0850];
+den = [1 0.4174 1.0871 0.2805 0.1512];
+[A,B,C,D] = tf2ss(num,den);
+
 T_completely_stable = 0.01;
 T_relatively_stable = 0.5;
 T_relatively_unstable = 0.7;
 T_completely_unstalbe = 1.0;
+
+u = ones(1,N);
+fx = zeros(1,N);
+x = zeros(1,N);
+y = zeros(1,N);
+A = -0.4174;
+B = -1.0871;
+C = -0.2805;
+D = -0.1512;
+for k = 1:N-2
+    fx(k) = A.*x(k) + B.*u(k);
+    
+    x(k+2) = x(k+1) + (T_relatively_stable/2)*(3*fx(k+1)-fx(k));
+    y(k) = C.*x(k)+D.*u(k);
+end
+
+figure(4)
+subplot(121)
+plot(x,y)
+title('Relatively Stable T')
+
+u = ones(1,N);
+fx = zeros(1,N);
+x = zeros(1,N);
+y = zeros(1,N);
+
+for k = 1:N-2
+    fx(k) = A.*x(k) + B.*u(k);
+    
+    x(k+2) = x(k+1) + (T_relatively_unstable/2)*(3*fx(k+1)-fx(k));
+    y(k) = C.*x(k)+D.*u(k);
+end
+
+subplot(122)
+plot(x,y)
+title('Relatively Unstable T')
+
