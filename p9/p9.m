@@ -114,10 +114,10 @@ x4 = zeros(1,N);
 y = zeros(1,N);
 
 for k = 1:N-2
-    fx1(k) = -0.4174*x1(k)-1.0871*x2(k)-0.2805*x3(k)-0.1512*x4(k) + u(k);
-    fx2(k) = x1(k);
-    fx3(k) = x2(k);
-    fx4(k) = x3(k);
+    fx1(k+1) = -0.4174*x1(k)-1.0871*x2(k)-0.2805*x3(k)-0.1512*x4(k) + u(k);
+    fx2(k+1) = x1(k);
+    fx3(k+1) = x2(k);
+    fx4(k+1) = x3(k);
     
     x1(k+2) = x1(k+1) + (T_relatively_stable/2)*(3*fx1(k+1)-fx1(k));
     x2(k+2) = x2(k+1) + (T_relatively_stable/2)*(3*fx2(k+1)-fx2(k));
@@ -145,10 +145,10 @@ x4 = zeros(1,N);
 y = zeros(1,N);
 
 for k = 1:N-2
-    fx1(k) = -0.4174*x1(k)-1.0871*x2(k)-0.2805*x3(k)-0.1512*x4(k) + u(k);
-    fx2(k) = x1(k);
-    fx3(k) = x2(k);
-    fx4(k) = x3(k);
+    fx1(k+1) = -0.4174*x1(k)-1.0871*x2(k)-0.2805*x3(k)-0.1512*x4(k) + u(k);
+    fx2(k+1) = x1(k);
+    fx3(k+1) = x2(k);
+    fx4(k+1) = x3(k);
     
     x1(k+2) = x1(k+1) + (T_relatively_unstable/2)*(3*fx1(k+1)-fx1(k));
     x2(k+2) = x2(k+1) + (T_relatively_unstable/2)*(3*fx2(k+1)-fx2(k));
