@@ -29,7 +29,7 @@ end
 
 figure(1)
 plot3(x,y,z)
-title('AB-4 Simulation of Simple Chatoic Sprott System')
+title('AB-4 Simulation of Simple Chaotic Sprott System')
 
 figure(2)
 title('Time Responses')
