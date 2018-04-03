@@ -28,7 +28,7 @@ zc(1) = 1;
 
 for k = 1:N
     % Evaluate for prediction %
-    fxc(k) = alpha*(yc(k)+((xc(k)-2*(xc(k)).^3)/(yc(k))));
+    fxc(k) = alpha*(yc(k)+((xc(k)-2*(xc(k)).^3)/(7)));
     fyc(k) = xc(k)-yc(k)+zc(k);
     fzc(k) = -(100/7)*yc(k);
     % Predict %
@@ -36,7 +36,7 @@ for k = 1:N
     yp(k+1) = yc(k)+T*fyc(k);
     zp(k+1) = zc(k)+T*fzc(k);
     % Evaluate for correction %
-    fxp(k) = alpha*(yp(k)+((xp(k)-2*(xp(k)).^3)/(yp(k))));
+    fxp(k) = alpha*(yp(k)+((xp(k)-2*(xp(k)).^3)/(7)));
     fyp(k) = xp(k)-yp(k)+zp(k);
     fzp(k) = -(100/7)*yp(k);
     % Correct %
@@ -47,5 +47,5 @@ end
 
 figure(1)
 plot3(xc,yc,zc)
-title('3D Plot')
+title('Chuas System: 3D Plot')
     
