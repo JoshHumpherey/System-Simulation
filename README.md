@@ -6,5 +6,5 @@ This class required the simulation of different systems and analysis techniques 
 * Simple Chaotic Systems
 * Stability Regions (For Both Linear and Non-Linear Systems)
 * Stiff Systems
-* Direct and Indrect Mapping
+* Direct and Indirect Mapping
 * Determining Sample Times to Produce Tuned Systems
