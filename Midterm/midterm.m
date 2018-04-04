@@ -4,7 +4,7 @@
 %% Problem 2
 
 % Plot the Stability Region:
-figure(2)
+figure(1)
 run=2;
 Nr=10;
 Ntheta=80;
@@ -25,7 +25,7 @@ for m=1:Nr
     w=(B1.*z+B0)./(z.^2+z);
     if(r>0.57)
         rhoccw(m)=100;
-        title('Predictor Stability Region')
+        title('Problem 2: Predictor Stability Region')
         hold on
         plot(real(w),imag(w))
         hold off
