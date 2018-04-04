@@ -1,5 +1,5 @@
 ## System-Simulation
-This is a repo for holding all homeworks and projects for the senior level elective System Simulation taught by Dr. Jay Adams (Univeristy of Akron)
+This is a repo for holding all homeworks and projects for the senior level elective System Simulation taught by Dr. Jay Adams (Univeristy of Akron).
 This class required the simulation of different systems and analysis techniques such as:
 * Linear Multistep Methods
 * Runge-Kutta Methods
