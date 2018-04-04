@@ -4,47 +4,74 @@
 %% Problem 2
 
 % Plot the Stability Region:
+lambda = 1;
+T = 1;
+
+LT = lambda*T;
+
+b0 = (6/17);
+b1 = (11/17);
+
+N = 1000;
+theta = linspace(0,2*pi,N+1);
+z = exp(1i*theta);
+
+w = (z.^2-z)./(b1*z+b0);
+
 figure(1)
-run=2;
-Nr=10;
-Ntheta=80;
+plot(real(w),imag(w))
+title('\lambdaT Plane Stability Region')
 
-rho=linspace(1,Nr,Nr)/Nr;
-theta=linspace(0,(Ntheta-1)/Ntheta,Ntheta)*2*pi;
+%% Problem 3
+clear
+b0 = (6/17);
+b1 = (11/17);
+N = 10000;
+theta = linspace(0,2*pi,N+1);
+z = exp(1i*theta);
+w = (z.^2-z)./(b1*z+b0);
+den_GC = [1 6.5 14.4 12];
+poles_Gc = roots(den_GC)
+
+figure(2)
+hold on
+plot(real(w),imag(w))
+plot(-3.1115,0,'x')
+plot(-1.6943,0.9931,'x')
+plot(-1.6943,-0.9931,'x')
+title('\lambdaT Plane Stability Region with Gc(s) Poles')
+
+T_stable = 0.01;
+T_unstable = 1.0;
+
+num = [1 1];
+den = den_GC;
+[A,B,C,D] = tf2ss(num,den);
+t = linspace(0,10,N);
+
+u = ones(1,N);
+fx1 = zeros(1,N);
+fx2 = zeros(1,N);
+fx3 = zeros(1,N);
+x1 = zeros(1,N);
+x2 = zeros(1,N);
+x3 = zeros(1,N);
+y = zeros(1,N);
+
+for k = 1:N-1
+    fx1(k) = -6.5*x1(k)-14.4*x2(k)-12*x3(k)+u(k);
+    fx2(k) = x1(k);
+    fx3(k) = x2(k);
     
-rhocw=rho;
-rhoccw=rho;
+    x1(k+1) = x1(k) + T_stable*fx1(k);
+    x2(k+1) = x2(k) + T_stable*fx2(k);
+    x3(k+1) = x3(k) + T_stable*fx3(k);
 
-B0 = 11/17;
-B1 = 121/102;
-
-p=linspace(0,2*pi,1001);
-for m=1:Nr
-    r=rho(Nr-m+1);
-    z=r*exp(i*p);
-    w=(B1.*z+B0)./(z.^2+z);
-    if(r>0.57)
-        rhoccw(m)=100;
-        title('Problem 2: Predictor Stability Region')
-        hold on
-        plot(real(w),imag(w))
-        hold off
-        axis([-5 5 -5 5])
-    end    
-    
-end
-if(run==3)
-    pause
+    y(k) = x2(k)+x3(k);
 end
 
-
-r1=linspace(min(rhoccw),1,1001);
-
-for m=1:length(theta)
-    z1=r1*exp(i*theta(m));
-    w1=(B1.*z+B0)./(z.^2+z);
-    hold on
-        plot(real(w1),imag(w1))
-    hold off
-end
-
+figure(3)
+plot(t,y)
+title('Simulation of Gc(s)')
+ylabel('Magnitude')
+xlabel('Time (seconds)')
