@@ -26,7 +26,7 @@ for m=1:Nr
     hold on
     plot(real(w),imag(w))
     hold off
-    title(['Corrector Stability Region; r=',num2str(rvec(m))])
+    title(['Predictor Stability Region; r=',num2str(rvec(m))])
     xlabel('Re\{{\lambda}T \}')
     ylabel('Im\{{\lambda}T \}')
     axis([xlow xhigh ylow yhigh])

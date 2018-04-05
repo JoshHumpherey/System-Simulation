@@ -1,6 +1,6 @@
 % Midterm Exam: System Simulation
 % Written by Josh Humphrey
-% Problem 3
+% Problem 5
 
 clear
 b0 = (6/17);
