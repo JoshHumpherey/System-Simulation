@@ -18,7 +18,7 @@ p2_xval = -1.6943;
 p2_yval = 0.9931;
 p3_xval = -1.6943;
 p3_yval = -0.9931;
-T = linspace(1,0,10);
+T = linspace(0,1,10);
 
 figure(1)
 hold on
@@ -32,7 +32,7 @@ for k = 1:10
 end
 title('\lambdaT Plane Stability Region with Gc(s) Poles')
 
-T_stable = 0.01;
+T_stable = 0.1;
 T_unstable = 1.0;
 
 num = [1 1];

@@ -64,7 +64,7 @@ for m=1:Nt
     hold on
         plot(real(w),imag(w))
     hold off
-    title('Corrector Stability Region')
+    title('Predictor Stability Region')
     xlabel('Re\{{\lambda}T \}')
     ylabel('Im\{{\lambda}T \}')
     axis([xlow xhigh ylow yhigh])
