@@ -1,35 +1,15 @@
 % Midterm Exam: System Simulation
 % Written by Josh Humphrey
+% Problem 3
 
-%% Problem 2
-
-% Plot the Stability Region:
-lambda = 1;
-T = 1;
-
-LT = lambda*T;
-
-b0 = (6/17);
-b1 = (11/17);
-
-N = 1000;
-theta = linspace(0,2*pi,N+1);
-z = exp(1i*theta);
-
-w = (z.^2-z)./(b1*z+b0);
-
-figure(1)
-plot(real(w),imag(w))
-title('\lambdaT Plane Stability Region')
-
-%% Problem 3
 clear
 b0 = (6/17);
 b1 = (11/17);
+b2 = (3/2);
 N = 10000;
 theta = linspace(0,2*pi,N+1);
 z = exp(1i*theta);
-w = (z.^2-z)./(b1*z+b0);
+w = (z.^2-z)./(b2*z.^2+b1*z+b0);
 den_GC = [1 6.5 14.4 12];
 poles_Gc = roots(den_GC)
 
