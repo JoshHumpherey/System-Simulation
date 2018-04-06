@@ -14,11 +14,10 @@ z=1*exp(1i*theta);
 b0 = (6/17);
 b1 = (11/17);
 b2 = (0);
-w = (z.^2-z)./(b2*z.^2+b1*z+b0);
 xlow = -10;
-xhigh = 10;
-ylow = -10;
-yhigh = 10;
+xhigh = 0;
+ylow = -6;
+yhigh = 6;
 
 for m=1:Nr
     z=rvec(Nr-m+1)*exp(1i*theta);
@@ -43,7 +42,7 @@ hold on
     plot(real(w),imag(w))
 hold off
 
-axis([-10 10 -10 10])
+axis([xlow xhigh ylow yhigh])
 axis square
 grid on
 
