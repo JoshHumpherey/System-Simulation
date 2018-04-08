@@ -24,7 +24,7 @@ T = linspace(0,1,10);
 figure(1)
 hold on
 plot(real(w),imag(w))
-T = 0.2
+T = 0.1
 plot(T*p1_xval,T*p1_yval,'x')
 plot(T*p2_xval,T*p2_yval,'x')
 plot(T*p3_xval,T*p3_yval,'x')
@@ -50,7 +50,7 @@ t = linspace(0,10,N);
 
 % Stable Simulation
 N = 10000;
-T_stable = 0.2;
+T_stable = 0.1;
 xlow = 0;
 xhigh = 0.1;
 u = ones(1,N);
