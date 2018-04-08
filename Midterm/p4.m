@@ -2,10 +2,6 @@
 % Written by Josh Humphrey
 % Problem 4
 
-% Midterm Exam: System Simulation
-% Written by Josh Humphrey
-% Problem 2
-
 Nr=10;
 Nt=21;
 animate=0;
@@ -14,16 +10,19 @@ rvec=linspace(1,Nr,Nr)/Nr;
 theta=linspace(-pi,pi,1001);
 theta=theta(1:length(theta)-1);
 
-b0 = (117/289);
-b1 = (399/588);
-b2 = (-55/578);
-xlow = -10;
-xhigh = 0;
+b0 = (15/289);
+b1 = (229/578);
+b2 = (319/578);
+xlow = -2;
+xhigh = 7;
 ylow = -6;
 yhigh = 6;
 
 for m=1:Nr
     z=rvec(Nr-m+1)*exp(1i*theta);
+    if (rvec(m) == 1)
+        radius1 = z;
+    end
     w = (z.^2-z)./(b2*z.^2+b1*z+b0);
     hold on
     plot(real(w),imag(w))
@@ -34,7 +33,7 @@ for m=1:Nr
     axis([xlow xhigh ylow yhigh])
     axis square
     grid on
-    pause(0.5)
+    pause(0.1)
 end
 
 tvec=linspace(0,Nt-1,Nt)*(2*pi)/Nt;

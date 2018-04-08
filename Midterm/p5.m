@@ -2,13 +2,12 @@
 % Written by Josh Humphrey
 % Problem 5
 
-clear
-b0 = (117/289);
-b1 = (399/588);
-b2 = (-55/578);
+b0 = (15/289);
+b1 = (229/578);
+b2 = (319/578);
 N = 10000;
 theta = linspace(0,2*pi,N+1);
-z = exp(1i*theta);
+z = radius1;
 w = (z.^2-z)./(b2*z.^2+b1*z+b0);
 den_GC = [1 6.5 14.4 12];
 poles_Gc = roots(den_GC)
@@ -24,7 +23,7 @@ T = linspace(0,1,10);
 figure(1)
 hold on
 plot(real(w),imag(w))
-T = 0.1
+T = 0.2
 plot(T*p1_xval,T*p1_yval,'x')
 plot(T*p2_xval,T*p2_yval,'x')
 plot(T*p3_xval,T*p3_yval,'x')
