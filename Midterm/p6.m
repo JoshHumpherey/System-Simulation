@@ -39,9 +39,9 @@ for k = 1:N-1
     x2p(k+1) = x2c(k)+T*fx2c(k);
     x3p(k+1) = x3c(k)+T*fx3c(k);
     % Evaluate for correction %
-    fx1p(k) = -6.5*x1p(k)-14.4*x2p(k)-12*x3p(k)+u(k);
-    fx2c(k) = x1p(k);
-    fx3c(k) = x2p(k);
+    fx1p(k+1) = -6.5*x1p(k+1)-14.4*x2p(k+1)-12*x3p(k+1)+u(k+1);
+    fx2c(k+1) = x1p(k+1);
+    fx3c(k+1) = x2p(k+1);
     % Correct %
     x1c(k+1) = x1c(k)+T*fx1p(k);
     x2c(k+1) = x2c(k)+T*fx2p(k);

@@ -36,9 +36,9 @@ for k = 1:N
     yp(k+1) = yc(k)+T*fyc(k);
     zp(k+1) = zc(k)+T*fzc(k);
     % Evaluate for correction %
-    fxp(k) = alpha*(yp(k)+((xp(k)-2*(xp(k)).^3)/(7)));
-    fyp(k) = xp(k)-yp(k)+zp(k);
-    fzp(k) = -(100/7)*yp(k);
+    fxp(k+1) = alpha*(yp(k+1)+((xp(k+1)-2*(xp(k+1)).^3)/(7)));
+    fyp(k+1) = xp(k+1)-yp(k+1)+zp(k+1);
+    fzp(k+1) = -(100/7)*yp(k+1);
     % Correct %
     xc(k+1) = xc(k)+T*fxp(k);
     yc(k+1) = yc(k)+T*fyp(k);
