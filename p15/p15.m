@@ -2,10 +2,12 @@
 % Written by Josh Humphrey
 
 h=1;
-x = 0:h:5;
-y = zeros(1,length(x)); 
-y(1) = 0.1;
-F_xy = @(t,r) 3.*exp(-t)-0.4*r;
+a = 1;
+b = 1;
+x = 1:h:10;
+y = ones(1,length(x)); 
+y(1) = 1;
+F_xy = @(t,r) r;
 
 for k=1:(length(x)-1)
     k_1 = F_xy(x(k),y(k));
@@ -17,4 +19,6 @@ for k=1:(length(x)-1)
 end
 
 figure(1)
-plot(y)
+plot(x,y)
+title('Sprott Dynamic Happiness System')
+
