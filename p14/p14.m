@@ -21,6 +21,6 @@ Solution = solve(den,Y);
 end
 
 figure(1)
-plot(t,ySol);
+plot(t,Solution);
 title('Mosquito-Borne Disease')
 
