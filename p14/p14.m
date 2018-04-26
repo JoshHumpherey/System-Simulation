@@ -1,5 +1,5 @@
-%Problem 14
-%System Simulation
+% System Simulation Problem 14
+% Written by Josh Humphrey
 
 N = 10000;
 t = linspace(0,10,N);
