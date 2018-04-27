@@ -73,4 +73,16 @@ end
 
 figure(1)
 plot3(x,y,z)
-title('Folded Torus System')
+title('Folded Torus System: 3D Plot')
+
+figure(2)
+plot(t,x)
+title('Folded Torus System: X vs t')
+
+figure(3)
+plot(t,y)
+title('Folded Torus System: Y vs t')
+
+figure(4)
+plot(t,z)
+title('Folded Torus System: Z vs t')
