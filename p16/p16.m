@@ -67,9 +67,10 @@ for k=1:(N-1)
     kz4_2 = -b.*(1-Midz3_1.^2) .* Midz3_2 - Midz3_1;
     
     x(k+1) = x(k)+(T/6).*(kx1_1+2.*kx2_1+2.*kx3_1+kx4_1);
-    y(k+1) = y(k)+(T/6).*(ky2_2+2.*ky2_2+2.*ky3_2+ky4_2);
+    y(k+1) = y(k)+(T/6).*(ky1_1+2.*ky2_2+2.*ky3_1+ky4_1);
+    z(k+1) = z(k)+(T/6).*(kz1_1+2.*kz2_2+2.*kz3_1+kz4_1);
 end
 
 figure(1)
-plot(x,y)
+plot3(x,y,z)
 title('Folded Torus System')
