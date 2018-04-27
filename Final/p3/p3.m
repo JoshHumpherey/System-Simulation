@@ -2,8 +2,8 @@
 % Written by Josh Humphrey
 
 % Model Parameters
-days = 1200;
-T = 0.1;
+days = 180;
+T = 1;
 t = linspace(1,days,days);
 alpha = 0.005;
 beta = 0.0055;
@@ -11,7 +11,7 @@ zeta = 0.5;
 delta = 0.001;
 rho = 0.5;
 c = 0.002;
-pii = 0.001;
+p = 0.001;
 
 % Populations
 Middletown = 97.5;
@@ -26,7 +26,7 @@ I = zeros(1,days); % Infected Group
 Z = zeros(1,days); % Zombies
 R = zeros(1,days); % Raise-able
 K = zeros(1,days); % Unable to be re-animated
-S(1)= Middletown;
+S(1)= Columbus;
 I(1)= 0;
 Z(1)= 0;
 R(1)= 0;
@@ -35,7 +35,7 @@ K(1)= 0;
 
 
 for k = 1:days-1
-    SK1 = pii*S(k)-beta*Z(k)*S(k)-delta*S(k)+c*Z(k);
+    SK1 = p*S(k)-beta*Z(k)*S(k)-delta*S(k)+c*Z(k);
     IK1 = beta*Z(k)*S(k)-rho*I(k)-delta*I(k);
     ZK1= rho*I(k)+zeta*R(k)-alpha*S(k)*Z(k)-c*Z(k);
     RK1 = delta*S(k)-zeta*R(k);
@@ -47,11 +47,11 @@ for k = 1:days-1
     MidR = R(k)+(T)*RK1;    
     MidK = K(k)+(T)*KK1;
     
-    SK2 = pii*SK1-beta*ZK1*SK1-delta*SK1+c*ZK1;
-    IK2 = beta*ZK1*SK1-rho*IK1-delta*IK1;
-    ZK2 = rho*IK1+zeta*RK1-alpha*SK1*ZK1-c*ZK1;
-    RK2 = delta*SK1-zeta*RK1;
-    KK2 = delta*IK1+alpha*SK1*ZK1;
+    SK2 = p*MidS-beta*MidZ*MidS-delta*MidS+c*MidZ;
+    IK2 = beta*MidZ*MidS-rho*MidI-delta*MidI;
+    ZK2 = rho*MidI+zeta*MidR-alpha*MidS*MidZ-c*MidZ;
+    RK2 = delta*MidS-zeta*MidR;
+    KK2 = delta*MidI+alpha*MidS*MidZ;
 
     S(k+1) = S(k)+(T/2)*(SK1 + SK2);
     I(k+1) = I(k)+(T/2)*(IK1 + IK2);
@@ -76,32 +76,32 @@ xlabel('# of Days')
 ylabel('Population (Thousands)')
 title('Zombie Outbreak: Columbus')
 
-figure(2)
-hold on
-grid on
-plot(t,Mid_H)
-plot(t,Akr_H)
-plot(t,CF_H)
-plot(t,Cle_H)
-plot(t,Col_H)
-title('Human Populations')
-legend('Middletown','Akron','Canal Fulton','Cleveland','Columbus')
-xlabel('# of Days')
-ylabel('Population (Thousands)')
-xlim([1,days])
-hold off
-
-figure(3)
-hold on
-grid on
-plot(t,Mid_Z)
-plot(t,Akr_Z)
-plot(t,CF_Z)
-plot(t,Cle_Z)
-plot(t,Col_Z)
-title('Zombie Populations')
-legend('Middletown','Akron','Canal Fulton','Cleveland','Columbus')
-xlabel('# of Days')
-ylabel('Population (Thousands)')
-xlim([1,days])
-hold off
+% figure(2)
+% hold on
+% grid on
+% plot(t,Mid_H)
+% plot(t,Akr_H)
+% plot(t,CF_H)
+% plot(t,Cle_H)
+% plot(t,Col_H)
+% title('Human Populations')
+% legend('Middletown','Akron','Canal Fulton','Cleveland','Columbus')
+% xlabel('# of Days')
+% ylabel('Population (Thousands)')
+% xlim([1,days])
+% hold off
+% 
+% figure(3)
+% hold on
+% grid on
+% plot(t,Mid_Z)
+% plot(t,Akr_Z)
+% plot(t,CF_Z)
+% plot(t,Cle_Z)
+% plot(t,Col_Z)
+% title('Zombie Populations')
+% legend('Middletown','Akron','Canal Fulton','Cleveland','Columbus')
+% xlabel('# of Days')
+% ylabel('Population (Thousands)')
+% xlim([1,days])
+% hold off
