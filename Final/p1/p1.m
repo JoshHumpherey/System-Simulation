@@ -2,21 +2,32 @@
 % Written by Josh Humphrey
 
 clear
-N = 11;
-T = 1;
-t = linspace(1,N,N);
-x = ones(1,N);
-x(1) = 0;
-x(11) = 10;
-ffx = zeros(1,N);
+N = 1000;
+positions = 10;
+T = 0.1;
+t = linspace(1,10,N);
+x = zeros(1,N);
+ffx = zeros(1,positions);
 
+% Initialize x(m) values
+for j = 1:(positions)
+   x(j) = j;
+end
+for i = 2:positions-1
+    ffx(i) = -1+(1/((x(i)-x(i-1)).^2))-(1/((x(i+1)-x(i)).^2)); 
+end
+
+% Plot All Magnets
 figure(1)
-hold on
 grid on
-for m = 3:9
-    ffx(m) = -1+(1/((x(m)-x(m-1)).^2))-(1/((x(m+1)-x(m)).^2));
-    x(m) = (T^2)*ffx(m-1)-x(m-2)-2*x(m-1);
-    plot(t,x(m),'o')
+hold on
+
+for magnet = 1:positions
+    for k = 2:N-1
+        x(k+1) = -2*x(k)-x(k-1)-T^2*(ffx(magnet));
+    end
+    plot(t,x)
+    
 end
 
 title('Magnets on a Frictionless Rod')
