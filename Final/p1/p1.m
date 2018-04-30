@@ -2,7 +2,7 @@
 % Written by Josh Humphrey
 
 clear
-N = 1000;
+N = 100;
 positions = 10;
 T = 0.1;
 t = linspace(1,10,N);
