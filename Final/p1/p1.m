@@ -1,5 +1,6 @@
 % System Simuation Final: Problem 1
 % Written by Josh Humphrey
+
 clear
 N = 11;
 T = 1;
@@ -8,6 +9,7 @@ x = ones(1,N);
 x(1) = 0;
 x(11) = 10;
 ffx = zeros(1,N);
+
 figure(1)
 hold on
 grid on
@@ -21,3 +23,4 @@ title('Magnets on a Frictionless Rod')
 xlabel('Time (seconds)')
 ylabel('Position')
 hold off
+
