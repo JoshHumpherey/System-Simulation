@@ -17,7 +17,7 @@ x7 = zeros(1,N);
 x8 = zeros(1,N);
 x9 = zeros(1,N);
 x10 = 10*ones(1,N);
-f1 = zeros(1,N);
+f1 = zeros(
 % Initialize x(m) values
 x1(1) = 1;
 x2(1) = 2;
@@ -34,9 +34,9 @@ figure(1)
 grid on
 hold on
 
-for k = 2:N-1
-    f1(k) = -1+1/(x1(k)-x0(k))^2-1/(x2(k)-x1(k))^2;
-    x1(k+1) = -2*x1(k)-x1(k-1)-T^2*(f1);
+for k = 1:N-1
+    f1 = -1+1/(x1(k)-x0(k))^2-1/(x2(k)-x1(k))^2;
+    %x1(k+1) = -2*x1(k)-x1(k-1)-T^2*(f1);
 end
 plot(t,x1)
 
